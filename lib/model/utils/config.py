@@ -9,6 +9,16 @@ import numpy as np
 from easydict import EasyDict as edict
 
 __C = edict()
+"""
+edict is typically a subclass of Python's built-in dict class that allows you to access its keys as attributes.
+ This can make accessing nested configuration values more convenient.
+
+
+ alll the foollowing parto of __C you are configure the variables inside
+ this is very interesting but old way of coding 
+ there are much better approaches 
+
+"""
 # Consumers can get config by:
 #   from fast_rcnn_config import cfg
 cfg = __C

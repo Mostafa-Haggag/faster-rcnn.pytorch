@@ -27,18 +27,31 @@ from .voc_eval import voc_eval
 
 # TODO: make fast_rcnn irrelevant
 # >>>> obsolete, because it depends on sth outside of this project
-from model.utils.config import cfg
+from model.utils.config import cfg # __C
 
 try:
     xrange          # Python 2
 except NameError:
-    xrange = range  # Python 3
+    xrange = range  # Python 3 this just nothing but a macro nothing important
 
 # <<<< obsolete
 
+"""
+Number of Images (Approximate):
 
+Training Set: Around 5,011 images (VOC2007) and 8,000 images (VOC2012)
+Validation Set: Around 4,952 images (VOC2007) and 8,000 images (VOC2012)
+Testing Set: Around 4,995 images (VOC2007)
+The PASCAL VOC dataset typically consists of 20 object categories.
+ Here are the classes along with the approximate number of images for each split (training, testing, validation) 
+ in the VOC2007 and VOC2012 datasets:
+
+
+"""
 class pascal_voc(imdb):
     def __init__(self, image_set, year, devkit_path=None):
+        # in the imageset you put in here  what set if you are working on an training set
+        # or valdiation set
         imdb.__init__(self, 'voc_' + year + '_' + image_set)
         self._year = year
         self._image_set = image_set
@@ -52,6 +65,19 @@ class pascal_voc(imdb):
                          'motorbike', 'person', 'pottedplant',
                          'sheep', 'sofa', 'train', 'tvmonitor')
         self._class_to_ind = dict(zip(self.classes, xrange(self.num_classes)))
+        '''
+        zip(self.classes, xrange(self.num_classes)): This pairs each class name from self.classes with
+        its corresponding index from xrange(self.num_classes). 
+        It creates a sequence of tuples where each tuple contains a class name and its corresponding numerical index.
+        dict(...): This converts the sequence of tuples into a dictionary, 
+        where the class names are the keys and the numerical indices are the values. 
+        It creates a mapping between class names and their numerical indices.
+        '''
+
+        """
+        xrange(self.num_classes) is a Python construct that generates a sequence of integers 
+        from 0 to self.num_classes - 1. It's similar to the range() function in Python 3.
+        """
         self._image_ext = '.jpg'
         self._image_index = self._load_image_set_index()
         # Default to roidb handler

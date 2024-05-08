@@ -101,6 +101,8 @@ def filter_roidb(roidb):
 def combined_roidb(imdb_names, training=True):
   """
   Combine multiple roidbs
+  This Python function, combined_roidb, is used to combine multiple Region of Interest databases (roidbs)
+  for training in an object detection system, particularly in the context of Faster R-CNN or similar models.
   """
 
   def get_training_roidb(imdb):
@@ -125,7 +127,8 @@ def combined_roidb(imdb_names, training=True):
     print('Set proposal method: {:s}'.format(cfg.TRAIN.PROPOSAL_METHOD))
     roidb = get_training_roidb(imdb)
     return roidb
-
+  # for example can be "voc_2007_trainval" OR "voc_2007_trainval+voc_2012_trainval"
+  # the plus give you more than one data set that can be used
   roidbs = [get_roidb(s) for s in imdb_names.split('+')]
   roidb = roidbs[0]
 
@@ -140,6 +143,6 @@ def combined_roidb(imdb_names, training=True):
   if training:
     roidb = filter_roidb(roidb)
 
-  ratio_list, ratio_index = rank_roidb_ratio(roidb)
+  ratio_list, ratio_indeget_imdbx = rank_roidb_ratio(roidb)
 
   return imdb, roidb, ratio_list, ratio_index

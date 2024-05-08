@@ -10,7 +10,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-__sets = {}
+__sets = {}# this is a dictionaryy
 from datasets.pascal_voc import pascal_voc
 from datasets.coco import coco
 from datasets.imagenet import imagenet
